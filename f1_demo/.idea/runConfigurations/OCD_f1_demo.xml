@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="OCD f1_demo" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="f1_demo" TARGET_NAME="f1_demo.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="f1_demo" RUN_TARGET_NAME="f1_demo.elf">
+<<<<<<< HEAD
+    <openocd gdb-port="3333" telnet-port="4444" board-config="C:\Users\10370\Desktop\433demo\f1_demo\st_nucleo_f103rb.cfg" reset-type="INIT" download-type="ALWAYS" />
+=======
+<<<<<<< HEAD
+    <openocd gdb-port="3333" telnet-port="4444" board-config="C:\Users\10370\Desktop\433demo\f1_demo\st_nucleo_f103rb.cfg" reset-type="INIT" download-type="ALWAYS" />
+=======
+    <openocd gdb-port="3333" telnet-port="4444" board-config="C:\Users\Administrator\Desktop\433_demo-master\f1_demo\st_nucleo_f103rb.cfg" reset-type="INIT" download-type="ALWAYS" />
+>>>>>>> 433发射接收移植完成
+>>>>>>> 433接收模块完成
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

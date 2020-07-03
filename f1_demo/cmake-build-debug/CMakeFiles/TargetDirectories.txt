@@ -1,0 +1,3 @@
+C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/cmake-build-debug/CMakeFiles/f1_demo.elf.dir
+C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/cmake-build-debug/CMakeFiles/edit_cache.dir

@@ -1,0 +1,16 @@
+"D:\Program Files\JetBrains\CLion 2020.1.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_C_COMPILER=d:/Program Files/STMicroelectronics/STM32Cube/STM32CubeMX/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe" "-DCMAKE_CXX_COMPILER=d:/Program Files/STMicroelectronics/STM32Cube/STM32CubeMX/gcc-arm-none-eabi/bin/arm-none-eabi-g++.exe" -G "CodeBlocks - MinGW Makefiles" C:\Users\Administrator\Desktop\433_moudle-master\f1_demo
+-- The C compiler identification is GNU 9.3.1
+-- The CXX compiler identification is GNU 9.3.1
+-- The ASM compiler identification is GNU
+-- Found assembler: D:/Program Files/STMicroelectronics/STM32Cube/STM32CubeMX/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/cmake-build-debug
