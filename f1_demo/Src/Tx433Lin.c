@@ -6,7 +6,7 @@
 /*需要extern 的全局变量*/
 u8 ask_sw;//433开关
 u8 ask_runnum;//433总共发送数据的次数
-u8 ask_buf[10] = {0xFF,0x00,0xFF,0x00,0xFF,0x00,0xFF,0x00,0xFF,0x00};//发送的数据
+u8 ask_buf[10] = {0x24,0x00,0x00,0xff,0xFF,0x00,0xFF,0x00,0xFF,0x00};//发送的数据
 
 /*全局变量*/
 u8 ask_step;//433步骤
@@ -15,7 +15,7 @@ u8 data_num;//第几个数据
 u8 data_count;//第几位数据
 u8 send_count;//433发射次数
 
-#define DATA_LEN		8//发送个数 8个就为8个
+#define DATA_LEN		4//发送个数 8个就为8个
 
 #define START_HIGH	60//同步码高电平的时间 2ms
 #define START_LOW		41//同步码低电平的时间 2ms
@@ -156,24 +156,25 @@ void AskTask(void)
 
 
 /*数据设置*/
-void AskDataSet(u8 dat0,u8 dat1,u8 dat2,u8 dat3,u8 dat4,u8 dat5,u8 dat6,u8 dat7){
+void AskDataSet(u8 dat0,u8 dat1,u8 dat2,u8 dat3/*,u8 dat4,u8 dat5,u8 dat6,u8 dat7*/){
     ask_buf[0] = dat0;
     ask_buf[1] = dat1;
     ask_buf[2] = dat2;
     ask_buf[3] = dat3;
-    ask_buf[4] = dat4;
-    ask_buf[5] = dat5;
-    ask_buf[6] = dat6;
-    ask_buf[7] = dat7;
+//    ask_buf[4] = dat4;
+//    ask_buf[5] = dat5;
+//    ask_buf[6] = dat6;
+//    ask_buf[7] = dat7;
 }
 
 
 void AskSendData(u8 num, ASK_MODE order)
 {
-    u8 dat_1;
-    dat_1 = 0<<4;
-    dat_1 |= order;
-    AskDataSet(1,2,3,4,5,6,7,8);
+//    u8 dat_1;
+//    dat_1 = 0<<4;
+//    dat_1 |= order;
+    ask_buf[0]++;
+    AskDataSet(1,2,3,4);
     AskOpen(num);
 }
 

@@ -9,7 +9,8 @@
 
 extern unsigned int HOPE;
 
-void CRYPT(u16 dat);
+u32 CRYPT(u32 dat);
+u32 DECRYPT(u32 dat);
 void NLF_DEFINE();
 
 #endif //F1_DEMO_KEELOQ_LOCK_H

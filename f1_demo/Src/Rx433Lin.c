@@ -31,7 +31,7 @@
 
 //#define ASK_END_MIN				260//40ms/96us
 
-#define ASK_BIT_LEN				64//字节
+#define ASK_BIT_LEN				32//字节
 
 
 
@@ -82,6 +82,8 @@ void RX_AskRxCode()
                 {
                     if((rx_ask_time_count < ASK_START_H_MIN )|| (rx_ask_time_count > ASK_START_H_MAX))//超出同步码电平时间，返回
                     {
+                        rx_num = 0;//标志位计数器复位
+                        rx_data_count = 0;
                         rx_ask_step = 0;
                         return;
                     }
@@ -99,6 +101,8 @@ void RX_AskRxCode()
                 {
                         if((rx_ask_time_count > ASK_START_L_MAX) || (rx_ask_time_count < ASK_START_L_MIN))//若高于同步码和低于同步码时间，返回
                         {
+                            rx_num = 0;//标志位计数器复位
+                            rx_data_count = 0;
                             rx_ask_step = 0;
                             return;
                         }
@@ -151,7 +155,7 @@ void RX_AskRxCode()
                                 for(i = 0;i<ASK_BIT_LEN/8;i++)
                                 {
                                     AskReadbuf[i] = rx_Askbuf[i];
-                                    printf("%d\t",rx_Askbuf[i]);
+                                    printf("0x%x\t",rx_Askbuf[i]);
                                 }
                                 printf("\r\n");
 
@@ -170,7 +174,7 @@ void RX_AskRxCode()
 void Rx_data_Print(void){
     u8 i;
     for(i = 0;i<ASK_BIT_LEN/8;i++){
-        printf("AskReadbuf[%d] = %d",i,AskReadbuf[i]);
+        printf("AskReadbuf[%d] = 0x%x",i,AskReadbuf[i]);
 
     }
 }

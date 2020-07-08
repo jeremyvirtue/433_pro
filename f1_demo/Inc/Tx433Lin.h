@@ -27,7 +27,7 @@ void AskTask();
 void AskOpen(u8 count);
 void AskClose(void);
 void AskInit(void);
-void AskDataSet(u8 dat0,u8 dat1,u8 dat2,u8 dat3,u8 dat4,u8 dat5,u8 dat6,u8 dat7);
+void AskDataSet(u8 dat0,u8 dat1,u8 dat2,u8 dat3/*,u8 dat4,u8 dat5,u8 dat6,u8 dat7*/);
 void AskSendData(u8 num, ASK_MODE order);
 
 

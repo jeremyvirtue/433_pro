@@ -18,6 +18,7 @@ int  getBit(unsigned long long int source,int n) {
     return 0;
 }
 
+/*加密*/
 void RrcHOPE(){
     if(key_dat!=0){
         HOPE=(HOPE>>1)|0x80000000;
@@ -26,14 +27,25 @@ void RrcHOPE(){
     }
 }
 
+/*解码时*/
+void RlcHOPE(){
+    if(key_dat!=0){
+        HOPE=(HOPE<<1)|1;
+    }else{
+        HOPE=(HOPE<<1)&0xFFFFFFFE;
+    }
+}
+
 /*运行大概6ms stm32f103c8t6*/
-void CRYPT(u16 dat) {
+u32 CRYPT(u32 dat) {
     //key=SERX;
-    HOPE = dat;
+//    HOPE = dat;
+    u32 getdat;
+    getdat = dat;
     for (int i = 0; i < 528; i++) {
-        int nlf=NLF[getBit(HOPE, 31)][getBit(HOPE, 26)][getBit(HOPE, 20)][getBit(HOPE, 9)][getBit(HOPE, 1)];
-        int y16=getBit(HOPE, 16);
-        int y0=getBit(HOPE, 0);
+        int nlf=NLF[getBit(getdat, 31)][getBit(getdat, 26)][getBit(getdat, 20)][getBit(getdat, 9)][getBit(getdat, 1)];
+        int y16=getBit(getdat, 16);
+        int y0=getBit(getdat, 0);
         int k=getBit(key_lock, i%64);
         int result=nlf^y16^y0^k;
         if (result!=0) {
@@ -42,8 +54,38 @@ void CRYPT(u16 dat) {
             key_dat=0;
         }
 
-        RrcHOPE();
+        if(key_dat!=0){
+            getdat=(getdat>>1)|0x80000000;
+        }else{
+            getdat=(getdat>>1)&0x7fffffff;
+        }
+
     }
+    return getdat;
+}
+
+/*解密*/
+u32 DECRYPT(u32 dat) {
+//    key=key_lock;
+    for (int i = 528; i > 0; i--) {
+        int nlf = NLF[getBit(dat, 30)][getBit(dat, 25)][getBit(dat, 19)][getBit(dat, 8)][getBit(dat, 0)];
+        int y15 = getBit(dat, 15);
+        int y31 = getBit(dat, 31);
+        int k = getBit(key_lock, (i - 1) % 64);
+        int result = nlf ^y15 ^y31 ^k;
+        if (result != 0) {
+            key_dat = 1;
+        } else {
+            key_dat = 0;
+        }
+
+        if(key_dat!=0){
+            dat=(dat<<1)|1;
+        }else{
+            dat=(dat<<1)&0xFFFFFFFE;
+        }
+    }
+    return dat;
 }
 
 void NLF_DEFINE(){

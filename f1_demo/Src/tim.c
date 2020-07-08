@@ -115,10 +115,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 //            count = 0;
 //
 //        }
-        Tx433IrTask();
-        Rx433IrTask();
-//        AskTask();
-//        RX_AskRxCode();
+//        Tx433IrTask();
+//        Rx433IrTask();
+        AskTask();
+        RX_AskRxCode();
 
     }
 

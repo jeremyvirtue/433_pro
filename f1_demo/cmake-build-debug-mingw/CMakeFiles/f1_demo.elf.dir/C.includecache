@@ -172,7 +172,7 @@ stm32f1xx_hal_def.h
 stm32f1xx_hal_def.h
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
 
-../Inc/Rx433Remote.h
+../Inc/Rx433Lin.h
 main.h
 ../Inc/main.h
 
@@ -248,9 +248,9 @@ stm32f1xx_hal_hcd.h
 stm32f1xx_hal_mmc.h
 ../Inc/stm32f1xx_hal_mmc.h
 
-C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/Src/Rx433Remote.c
-Rx433Remote.h
-C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/Src/Rx433Remote.h
+C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/Src/Rx433Lin.c
+Rx433Lin.h
+C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/Src/Rx433Lin.h
 stdio.h
-C:/Users/Administrator/Desktop/433_moudle-master/f1_demo/Src/stdio.h
+-
 

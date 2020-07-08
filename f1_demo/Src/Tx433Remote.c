@@ -13,14 +13,17 @@ BYTE2为键值码，固定不变。
 结束位为0.3MS高电平+9.3MS低电平*/
 
 #include "Tx433Remote.h"
+#include "keeloq_lock.h"
+#include "stdio.h"
 
 TX_433_Ir_DATA irDat;
 
 
-#define TX433DATA_LEN   8
+#define TX433DATA_LEN   4
 
-//u8 TX_433_Ir_BUF[TX433DATA_LEN] = {0xe0,0x07};
-u8 TX_433_Ir_BUF[TX433DATA_LEN] = {0X00,0XFF,0X00,0XFF,0X00,0XFF,0X00,0XFF};
+//u8 TX_433_Ir_BUF[TX433DATA_LEN] = {0x00,0x07};
+//u8 TX_433_Ir_BUF[TX433DATA_LEN] = {0x11,0x22,0x33,0x44};
+u8 TX_433_Ir_BUF[TX433DATA_LEN] = {0x00,0x00,0x00,0x00};
 
 /*433初始化*/
 void Tx433IrInit(void ){
@@ -34,9 +37,27 @@ void Tx433IrInit(void ){
 
 /*发射并设定发射次数*/
 void Tx433IrOpen(u8 num){
-    Tx433IrInit();
+    static u8 buf[TX433DATA_LEN]= {0};
+    u8 i,j;
+    u32 passw = 0;
+    printf("\r\n");
+    for ( i = 0; i < TX433DATA_LEN; i++) {
+        j = TX433DATA_LEN-i - 1;
+        buf[i]++;
+        TX_433_Ir_BUF[i] = buf[i];
+        passw = passw | ((u32)TX_433_Ir_BUF[i] << j*8);//将4byte的数组成员一个32位的数
+
+    }
+//    printf("passw =  0x%x\r\n",passw);
+    passw = CRYPT(passw);//对数据进行加密
+//     printf("pwssword_decode =  %x\r\n",passw);
+
+    for (int i = 0; i < TX433DATA_LEN; i++) {//将加密后的数据重新导入txbuf的数组中
+        j = TX433DATA_LEN-i - 1;
+        TX_433_Ir_BUF[i] =( passw>> j*8 )& 0x000000ff;//
+    }
+    Tx433IrInit();//开始发送数据
     irDat.tx_sw = 1;
-    TX_433_Ir_BUF[0]++;
     irDat.send_num = num;
 }
 

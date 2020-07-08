@@ -14,6 +14,9 @@ typedef struct {
     u8 bit_count;
 }RX433_IR_DATA;
 
+extern u8 rx_433_ir_send_ok;
+
 void Rx433IrTask(void);
+void Rx433IrDispose(void );
 
 #endif //F1_DEMO_RX433REMOTE_H
